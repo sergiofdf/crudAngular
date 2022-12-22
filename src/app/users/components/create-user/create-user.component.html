@@ -1,0 +1,100 @@
+<form [formGroup]="userForm">
+  <div class="form-container d-grid m-4">
+    <fieldset>
+      <legend>Dados Pessoais</legend>
+      <div class="row my-1">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name">
+          <mat-error *ngIf="userForm.get('name')?.errors">{{getErrorMessage('name')}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Profissão</mat-label>
+          <input matInput formControlName="profession">
+          <mat-error *ngIf="userForm.get('profession')?.errors">{{getErrorMessage('profession')}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row my-1">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Data de Nascimento</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="birthDate">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>CPF</mat-label>
+          <input matInput formControlName="documentNumber" mask="000.000.000-00">
+          <mat-error *ngIf="userForm.get('documentNumber')?.errors">{{getErrorMessage('documentNumber')}}</mat-error>
+        </mat-form-field>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Endereço</legend>
+      <div formGroupName="address">
+        <div class="row my-1">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Rua</mat-label>
+            <input matInput formControlName="street">
+            <mat-error *ngIf="userForm.get('address.street')?.errors">{{getErrorMessage('address.street')}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-1">
+            <mat-label>Nº</mat-label>
+            <input matInput formControlName="number" mask="09999">
+            <mat-error *ngIf="userForm.get('address.number')?.errors">{{getErrorMessage('address.number')}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-2">
+            <mat-label>Comp</mat-label>
+            <input matInput formControlName="complement">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-3">
+            <mat-label>Bairro</mat-label>
+            <input matInput formControlName="neighborhood">
+          </mat-form-field>
+        </div>
+        <div class="row my-1">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city">
+            <mat-error *ngIf="userForm.get('address.city')?.errors">{{getErrorMessage('address.city')}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-2">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="state">
+              <mat-option *ngFor="let state of states" [value]="state.nome">
+                {{state.sigla}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-4">
+            <mat-label>CEP</mat-label>
+            <input matInput formControlName="zipCode" mask="00.000-000">
+            <mat-error
+              *ngIf="userForm.get('address.zipCode')?.errors">{{getErrorMessage('address.zipCode')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Contato</legend>
+      <div formGroupName="contact">
+        <div class="row mt-1">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Celular</mat-label>
+            <input matInput formControlName="phone" mask="(00) 0 0000-0000">
+            <mat-error *ngIf="userForm.get('contact.phone')?.errors">{{getErrorMessage('contact.phone')}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="userForm.get('contact.email')?.errors">{{getErrorMessage('contact.email')}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <button mat-raised-button color="primary" class="m-2" (click)="submitForm()"
+          [disabled]="userForm.invalid">Salvar</button>
+        <button mat-raised-button color="warn" (click)="cancelForm()">Cancelar</button>
+      </div>
+    </fieldset>
+  </div>
+</form>
