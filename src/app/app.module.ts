@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -21,6 +22,7 @@ import { ListComponent } from './users/components/list/list.component';
 import { NotFoundComponent } from './users/components/not-found/not-found.component';
 import { UsersComponent } from './users/users.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DialogComponent } from './users/components/dialog/dialog.component';
 
 
 const material = [
@@ -33,7 +35,8 @@ const material = [
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
 ];
 
 @NgModule({
@@ -42,7 +45,8 @@ const material = [
     UsersComponent,
     CreateUserComponent,
     NotFoundComponent,
-    ListComponent
+    ListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

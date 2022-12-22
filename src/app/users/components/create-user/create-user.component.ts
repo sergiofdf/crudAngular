@@ -22,7 +22,7 @@ export class CreateUserComponent implements OnInit {
     private dateAdapter: DateAdapter<Date>,
     private usersService: UsersService,
     private route: ActivatedRoute
-    ) {
+  ) {
     this.dateAdapter.setLocale('pt-BR');
   }
 
@@ -66,11 +66,11 @@ export class CreateUserComponent implements OnInit {
     });
   }
 
- private getStates() : void {
-  this.states = this.usersService.getStatesOfBrazil();
- }
+  private getStates(): void {
+    this.states = this.usersService.getStatesOfBrazil();
+  }
 
- public getErrorMessage(field: string): string {
+  public getErrorMessage(field: string): string {
     if (this.userForm.get(field)?.hasError('required')) {
       return 'Campo obrigatório';
     }
@@ -91,23 +91,22 @@ export class CreateUserComponent implements OnInit {
 
   public submitForm(): void {
     this.user = this.userForm.getRawValue();
-    if(!this.userEditId){
+    if (!this.userEditId) {
       this.usersService.saveUser(this.user);
-     } else {
+    } else {
       this.usersService.updateUser(this.user);
-     }
-
+    }
     this.router.navigate(['/users']);
   }
 
   public cancelForm(): void {
     this.userForm.reset();
-    this.router.navigate(['']);
+    this.router.navigate(['/users']);
   }
 
   private getUserData(): User | undefined {
-    this.userEditId = this.route.snapshot.params["id"];
-    if(!this.userEditId){
+    this.userEditId = this.route.snapshot.params['id'];
+    if (!this.userEditId) {
       return;
     }
     return this.usersService.getUserById(this.userEditId);

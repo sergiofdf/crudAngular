@@ -60,7 +60,7 @@
           <mat-form-field appearance="outline" class="col-2">
             <mat-label>Estado</mat-label>
             <mat-select formControlName="state">
-              <mat-option *ngFor="let state of states" [value]="state.nome">
+              <mat-option *ngFor="let state of states" [value]="state.sigla">
                 {{state.sigla}}
               </mat-option>
             </mat-select>
