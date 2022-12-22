@@ -1,4 +1,4 @@
-import { DialogComponent } from './../dialog/dialog.component';
+import { DialogComponent } from '../../../shared/dialog/dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
@@ -31,6 +31,8 @@ export class ListComponent implements OnInit {
       data: {
         title: 'Excluir Usuário',
         text: 'Tem certeza que deseja excluir o cadastro?',
+        button1: 'Sim',
+        button2: 'Cancelar'
       },
     });
 

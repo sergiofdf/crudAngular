@@ -17,11 +17,11 @@ export class UsersService {
         ...user.address,
         id: crypto.randomUUID(),
       }
-    }
+    };
 
     const users = this.listUsers();
     users.push(user);
-    localStorage.setItem('USERS', JSON.stringify(users))
+    localStorage.setItem('USERS', JSON.stringify(users));
   }
 
   public listUsers(): User[] {
@@ -46,9 +46,9 @@ export class UsersService {
   public updateUser(user: User): boolean {
     const users = this.listUsers();
     const index = users.findIndex(u => u.id === user.id);
-    if (!index) return false;
+    if (!index && index != 0) return false;
     users[index] = user;
-    localStorage.setItem('USERS', JSON.stringify(users))
+    localStorage.setItem('USERS', JSON.stringify(users));
     return true;
   }
 

@@ -1,19 +1,28 @@
-<mat-toolbar color="primary">
-  <button
-    mat-button
-    routerLink="/"
-    >Crud</button>
+<mat-toolbar color="primary" class="header-content">
+  <button mat-button routerLink="/">Crud
+  </button>
   <span class="spacer"></span>
-  <div class="menu">
-    <button
-      mat-button
-      routerLink="/users"
-      >Usuários</button>
-    <button
-      mat-button
-      routerLink="/users/create"
-      >Cadastrar usuário</button>
+  <div class="menu-lg">
+    <button mat-button routerLink="/users">Usuários
+    </button>
+    <button mat-button routerLink="/users/create">Cadastrar usuário
+    </button>
+    <button mat-button routerLink="/products">Produtos
+    </button>
+    <button mat-button routerLink="/products/create">Cadastrar produto
+    </button>
   </div>
+  <button class="menu-sm" mat-button [matMenuTriggerFor]="menu">Menu</button>
+  <mat-menu class="menu-sm" #menu="matMenu">
+    <button mat-menu-item routerLink="/users">Usuários
+    </button>
+    <button mat-menu-item routerLink="/users/create">Cadastrar usuário
+    </button>
+    <button mat-menu-item routerLink="/products">Produtos
+    </button>
+    <button mat-menu-item routerLink="/products/create">Cadastrar produto
+    </button>
+  </mat-menu>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

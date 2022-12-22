@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -19,11 +21,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateUserComponent } from './users/components/create-user/create-user.component';
 import { ListComponent } from './users/components/list/list.component';
-import { NotFoundComponent } from './users/components/not-found/not-found.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { UsersComponent } from './users/users.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DialogComponent } from './users/components/dialog/dialog.component';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductsListComponent } from './products/components/products-list/products-list.component';
+import { CreateProductComponent } from './products/components/create-product/create-product.component';
 
+import ptBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(ptBr);
 
 const material = [
   MatToolbarModule,
@@ -36,7 +45,9 @@ const material = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatDialogModule
+  MatDialogModule,
+  MatTableModule,
+  MatMenuModule
 ];
 
 @NgModule({
@@ -46,7 +57,10 @@ const material = [
     CreateUserComponent,
     NotFoundComponent,
     ListComponent,
-    DialogComponent
+    DialogComponent,
+    ProductsComponent,
+    ProductsListComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +71,7 @@ const material = [
     material,
     ReactiveFormsModule
   ],
-  providers: [provideNgxMask()],
+  providers: [provideNgxMask(), { provide: LOCALE_ID, useValue: 'pt' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
