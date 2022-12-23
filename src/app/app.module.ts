@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSortModule} from '@angular/material/sort';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
@@ -47,7 +48,8 @@ const material = [
   MatSelectModule,
   MatDialogModule,
   MatTableModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSortModule
 ];
 
 @NgModule({

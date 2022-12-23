@@ -1,19 +1,22 @@
 import { Product } from './../../models/product.model';
 import { ProductsService } from './../../services/products.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css'],
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'category', 'value', 'quantity', 'delete'];
-  dataSource!: Product[];
-  clickedRows = new Set<Product>();
+  productList!: Product[];
+  dataSource = new MatTableDataSource(this.productList);
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private productsService: ProductsService,
@@ -21,13 +24,18 @@ export class ProductsListComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.productList);
+    this.dataSource.sort = this.sort;
+  }
+
+
   ngOnInit(): void {
     this.loadProductList();
-    console.log(this.dataSource);
   }
 
   loadProductList(): void {
-    this.dataSource = this.productsService.listProducts();
+    this.productList = this.productsService.listProducts();
   }
 
   editProduct(id: string): void {

@@ -1,6 +1,6 @@
 <form [formGroup]="productForm">
   <div class="form-container d-flex flex-column align-items-center justify-content-start m-4">
-    <legend class="text-center">Cadastro de Produtos</legend>
+    <legend class="text-center">{{pageTitle}}</legend>
       <mat-form-field appearance="outline" class="my-2 w-50">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name">

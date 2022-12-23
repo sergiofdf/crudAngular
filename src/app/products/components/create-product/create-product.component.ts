@@ -16,6 +16,7 @@ export class CreateProductComponent implements OnInit {
   public product!: Product;
   public productEditId: string = '';
   public categories!: Category[];
+  public pageTitle = "Cadastro de Produtos";
 
   constructor(
     private router: Router,
@@ -27,7 +28,10 @@ export class CreateProductComponent implements OnInit {
     this.loadListOfProductsCategories();
     this.buildForm();
     const product = this.getProductData();
-    if (product) this.loadEditForm(product);
+    if (product){
+      this.loadEditForm(product);
+      this.pageTitle = "Edição de Produto";
+    };
   }
 
   loadListOfProductsCategories(): void {
