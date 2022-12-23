@@ -31,7 +31,8 @@ export class ProductsService {
       this.openProductErrorDialog('500ms', '500ms');
       return;
     }
-    const prodId = products.length + 1;
+    const maxCallback2 = ( max:any, cur:any) => Math.max( max, cur );
+    const prodId = products.map(p => p.id).reduce( maxCallback2, -Infinity ) + 1;
     product = {
       ...product,
       id: prodId.toString(),
