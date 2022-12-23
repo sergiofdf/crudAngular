@@ -25,7 +25,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.dataSource = new MatTableDataSource(this.productList);
+    this.loadProductList();
     this.dataSource.sort = this.sort;
   }
 
@@ -36,6 +36,7 @@ export class ProductsListComponent implements OnInit, AfterViewInit {
 
   loadProductList(): void {
     this.productList = this.productsService.listProducts();
+    this.dataSource = new MatTableDataSource(this.productList);
   }
 
   editProduct(id: string): void {
